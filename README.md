@@ -1,3 +1,19 @@
+# Hugheslike — repository status
+
+**[Recent work, checks and limitations: UPDATES.txt](UPDATES.txt)**
+
+This GitHub repository currently contains documentation only. The foundation
+README below was restored on 15 October 2026, but the game project, assets,
+scripts, tools and test reports it describes are not present here. Its run
+instructions and verification claims describe a separately held foundation;
+they are not a playable download or verified test results for this repository.
+Private source ZIPs and assets have not been imported or published by this
+reporting update. Their publication remains unapproved.
+
+The original foundation description is preserved below for context.
+
+---
+
 # Hugheslike — playable foundation v0.1
 
 A small, illustrated social roguelike prototype built around the supplied art. Open `project.godot` in **Godot 4.7.2** and press **F6** on `scenes/main.tscn`, or **F5** to run the project. The first import may take a little time. No addons or external services are required.
