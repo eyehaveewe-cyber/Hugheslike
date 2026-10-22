@@ -1,3 +1,17 @@
+# Hugheslike — new store slice
+
+This branch contains a **new editable Godot 4.7.2 project**, built from the store concepts described in the earlier README below. It is not recovered source from `Hugheslike_Foundation_v0_1.zip`. Open [project.godot](project.godot) in Godot 4.7.2 and press F5 to walk through Bellwether Department Store.
+
+The original source, concept bundle, roadmap, and supplied art packs were absent from the repository. The current room, characters, and fixtures use **temporary geometry drawn in Godot**. The original ZIP remains incomplete and was not used as runnable source.
+
+See [store slice notes](docs/STORE_SLICE.md) for controls, scope, and verification. [Store screenshot](docs/screenshots/store-in-engine.png) and [returns/notebook screenshot](docs/screenshots/returns-and-notebook-in-engine.png) are viewport captures from Godot 4.7.2.
+
+---
+
+## Earlier README, retained for reference
+
+The text below came from the repository before this implementation branch. It describes a larger prototype and files that were not present in the repository; treat it as design context, not a feature list for the current slice.
+
 # Hugheslike — playable foundation v0.1
 
 A small, illustrated social roguelike prototype built around the supplied art. Open `project.godot` in **Godot 4.7.2** and press **F6** on `scenes/main.tscn`, or **F5** to run the project. The first import may take a little time. No addons or external services are required.
