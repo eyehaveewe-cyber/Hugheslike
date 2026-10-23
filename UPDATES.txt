@@ -1,6 +1,77 @@
 HUGHESLIKE — RECENT WORK
 Newest dated entries first. Dates below use UTC.
 
+2026-10-23 — Hughes Atlas recovery and expansion complete; native checks pass
+
+Implemented and committed on docs/repository-updates-2026-10-16:
+- Finished the interrupted GraphEdit tool rather than leaving it as unattached
+  Git trees. The branch now contains a standalone Godot authoring project and
+  portable editor plugin; the separate game and private art are not imported.
+- Expanded to 53 categories, 143 relation types, 691 entries, 1,344 links and
+  fourteen views. Added 208 entries, 477 links and four fictional people beyond
+  the recovered base. All original base records remain unchanged.
+- Connected interests, preferences, habits, coping, boundaries, bodily states,
+  appraisals, expectations, practical constraints, occasions, message channels,
+  interaction patterns, self-images and life transitions to the earlier library.
+- Added relation/meaning/direction/holder filters, optional context/holder/feeling
+  reference wires, searchable relationship definitions and a connection tracer.
+  A graph path is not a causal explanation. Holder filtering is authoring-only,
+  not a player or NPC knowledge-permission implementation.
+- Added explicit missing-catalog merge that preserves authored records, labels,
+  metadata and layouts. It is undoable and idempotent, with no silent reseeding.
+- Fixed recovered native script errors and JSON persistence representation
+  problems. Saves preserve floating-point values, normalize textual keys, reject
+  non-JSON/unsafe numeric data, retain a previous-file backup and refuse a stale
+  writer. Editing and guarded deletion remain undoable.
+- Updated README, working guide, design rationale, progress and QA evidence.
+
+What can now be tried:
+- Open project.godot in Godot 4.7.2 and choose Hughes Atlas; F5 opens the standalone
+  atlas. Search Avery/Morgan for the earlier school cases or Rowan/Tess/Mara/Arun
+  for the new concert, late-message, shared-repair and public-credit cases.
+- Double-click a catalog entry to focus it. Browse relation meanings, filter
+  connections, inspect simultaneous feelings, trace a connection, add/edit/link
+  records, and save/reload. Record/schema editing currently uses JSON.
+- In an existing saved graph, use Add missing seed content explicitly to bring
+  in the expansion without overwriting existing records or their layout.
+
+Checks actually performed and observed:
+- Base and expanded Python data validation PASS; zero unlinked seed entries.
+- 40 Python regression tests PASS.
+- Godot 4.7.2 native editor import PASS.
+- 45 native model/storage/query/UI callback checks PASS, including GraphEdit
+  construction, link-dialog callback, edits, undo/redo, qualifier inspection,
+  relation search, path tracing, dependency deletion, guarded saves and merge.
+- Read the actual GitHub Actions job status, step conclusions and decoded logs.
+  The official engine ZIP checksum was verified by the workflow.
+
+Verified code commit: fb0911b4f4f406b055a67108a4705b7b10093204
+Passing run:
+https://github.com/eyehaveewe-cyber/Hugheslike/actions/runs/39989391936
+Native/Python job:
+https://github.com/eyehaveewe-cyber/Hugheslike/actions/runs/39989391936/job/120536905509
+This completion update changes documentation only after that verified code.
+
+Research-only and remaining limits:
+- Consulted official GraphEdit/editor and JSON documentation. The library's
+  possibility edges are authored associations, not executable NPC behavior.
+- No hands-on visual/mouse pass or Windows persistence test. Headless callbacks
+  do not prove screen readability, manual usability or crash-proof file writes.
+- No running town, runtime schedules, emotional simulation, knowledge-spread
+  system, dialogue engine, memory decay, quests, XP or original-game integration.
+- The catalog remains editable design content; structural validation does not
+  establish semantic truth or a final theory of human behavior.
+- No private source/art publication, merge to main or deployment.
+
+Branch: docs/repository-updates-2026-10-16
+Starting branch commit: 3fb13b65d185242d160cfc264bac130ca657adc2
+Guide:
+https://github.com/eyehaveewe-cyber/Hugheslike/blob/docs/repository-updates-2026-10-16/docs/ATLAS_GUIDE.md
+Verification:
+https://github.com/eyehaveewe-cyber/Hugheslike/blob/docs/repository-updates-2026-10-16/docs/QA_ATLAS.md
+Update log:
+https://github.com/eyehaveewe-cyber/Hugheslike/blob/docs/repository-updates-2026-10-16/UPDATES.txt
+
 2026-10-23 — Expanded relationships and GraphEdit navigation (verification pass)
 
 Implemented source on docs/repository-updates-2026-10-16:

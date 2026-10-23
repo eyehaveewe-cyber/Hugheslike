@@ -1,102 +1,101 @@
-# Relationship design — what the atlas adds beyond a hierarchy
+# Relationship design — a town cannot fit into one hierarchy
 
-The seed has 39 kinds, 96 typed predicates, 483 nodes and 867 explicit expanded
-relationships. All 483 nodes participate in at least one relationship. Six
-invented people demonstrate overlapping roles and unequal knowledge. These
-counts describe authored content, not implemented behaviors or emergent events.
+The expanded atlas has 53 kinds, 143 typed predicates, 691 entries and 1,344
+relationships. All entries participate in at least one connection. These
+counts describe authored concepts and fictional examples, not implemented
+behaviors or evidence that the model is a complete theory of people.
 
-## Identity, status and history are separate
+## Keep different questions separate
 
-A person can currently be a student, hall monitor, employee and caregiver. A
-principal can formerly have been a student. Age/life stage, grade/enrollment,
-reputation as a star student, and learning support are independent axes.
-Leaving school is a history/status, not an automatic personality or delinquency
-class. Backgrounds can change the significance of goals and places without
-prescribing an action or a redemption arc.
+A person can be a student, hall monitor, employee and caregiver. A principal
+can formerly have been a student. Life stage, enrollment, grade, reputation
+and support needs are independent. Leaving school is history or status, not
+an automatic delinquency class. Age does not determine when self-discovery ends.
 
-## The inner life has different time scales
+A trait is a tendency; a value is a priority; a need is a requirement; a mood
+is diffuse and temporary; an emotion responds to an appraisal; a feeling can
+endure toward someone or somewhere. Public reputation is none of those.
+Interests and preferences add reasons to seek out places and people that have
+nothing to do with a crisis or a quest reward.
 
-A trait is a tendency. A value is a priority. A need is a practical or social
-requirement. A mood is diffuse and temporary. An emotion responds to a
-situation. A feeling can endure toward a particular person or place. None of
-these is the same as a public reputation. A weary principal can still act
-fairly; a playful person can respect a boundary; a student can admire and resent
-the same person. The seed offers possible expressions, not diagnostic laws.
+A self-image adds another distinction: who I think I am, who I present myself
+as, and who I hope to become need not agree with how others see me. Someone
+who sees themself as reliable may have trouble asking for help. That is an
+authored possibility, not a deterministic psychological law.
 
-Directed feelings retain holder, target, context and optional intensity.
-Reciprocity is separately authored. Avery trusts Jules about the loan more
-strongly than Jules trusts Avery; friendship does not force those values equal.
+## Circumstances explain behavior without dictating it
 
-## Relationships need authority, audience, time and evidence
+Wanting to attend a concert, promising to attend, being able to leave work,
+actually attending and being seen attending are separate records. A missed
+meeting is an outcome, not proof of its motive. Fatigue or a blocked route can
+limit choices without becoming a permanent personality label.
+
+Habits describe repetition; coping strategies describe ways of handling strain.
+Both can have benefits and costs. Humor can relieve tension or obscure hurt.
+A walk can help someone settle or delay an explanation. The atlas does not
+assign universal probabilities to these outcomes.
+
+Boundaries matter alongside generosity. A helpful offer may be declined;
+private help and public help can be received differently. An accommodation can
+be practical and ordinary without turning its recipient into a special class,
+a lesson for another character or a compulsory source of gratitude.
+
+## Public structure is not private feeling
 
 Supervision is not friendship. Parenthood is not guardianship or co-residence.
-Membership is not approval. Ownership is not current possession. Access is not
-merely possessing a key. Competence is not permission. A role's workplace does
-not grant it unrestricted access to every room or record.
+Ownership is not possession. Access is not just having a key. Competence is
+not permission. Receiving public credit is different from contributing work;
+bearing the cost is different from causing the problem.
 
-Obligations, promises, beneficiaries and deadlines produce useful conflicts:
-club practice versus caring for a sibling; honesty versus keeping a confidence;
-public procedure versus avoiding humiliation; a work shift versus an appointment.
-These should not be flattened into a universal good/bad score.
+Feelings retain holder, target, context and optional strength. Reciprocity is
+explicit. Tess's affection and resentment toward Rowan coexist. A public
+expression of support does not erase a private grievance. Friendship does not
+force equal trust, and an apology need not restore access or erase a memory.
 
-## Event, observation, interpretation, memory and rumor are different records
+## Information has a route, audience and history
 
-The bicycle example deliberately preserves all of the following at once:
+The bicycle case keeps Jules's ownership and private permission, Avery's
+possession, Robin's partial observation, Robin's theft belief, Morgan's receipt
+of that allegation and Avery's memory of being blamed separate.
 
-1. Jules owns the bicycle and lends it to Avery.
-2. Avery possesses it during the loan.
-3. Robin sees the bicycle being moved, but misses the private permission.
-4. Robin forms a theft belief and makes an accusation.
-5. Morgan hears that claim without automatically accepting it.
-6. Avery remembers the accusation; later correction need not erase that memory.
+The concert case adds an explanatory message that arrives late. Rowan thinks
+Tess heard it; Tess has already formed an interpretation of an empty seat.
+A message can be true and still fail to inform the intended recipient in time.
+Telephone calls, notes, relayed messages, notices and staff records have
+particular audiences and limitations. No edge broadcasts a fact to the town.
 
-A witnessed action does not disclose its private motive. A school record can be
-wrong. A correction can reach fewer people than an accusation. Rumors should
-keep a source chain and confidence instead of magically becoming shared truth.
-The atlas stores the necessary distinctions; it does not yet simulate their
-spread, forgetting or revision.
+Appraisals are holder-specific interpretations. Arun's public ride offer and
+Mara's reading of it as pity can coexist without declaring either person's
+private account to be the omniscient meaning of the event. A reported or
+inferred claim is not upgraded to direct observation by connecting its nodes.
 
-## Institutions and places support ordinary life
+## Place and time make ordinary encounters possible
 
-The school organization differs from the school grounds. The gym contains a
-locker room; the corridor contains hall lockers. A custodian's maintenance
-access is not a principal's authority over records. A quiet support room is an
-ordinary access option, not a stigmatizing person category.
+The school institution is separate from its grounds and rooms. A custodian's
+maintenance access differs from a principal's access to records. The town has
+a church, separate children's home, park, library, stores, diner, transit,
+workshop, music corner and residential spaces. None is required to produce a
+sentimental scene on every visit.
 
-The town includes the church, separate children's home/orphanage, park and bird
-feeding bench, library, department store, diner, station, hotel, residential
-street and recycling yard. The suit-wearing business visitor and retired
-neighbor are original role concepts, not real public figures. The bird feeder
-is an activity-based role; appearing odd is not evidence of danger or goodness.
+Seating, privacy, shelter, tools and transport offer opportunities. Routines
+bring people to those opportunities at different times. Occasions alter who
+gathers; life transitions alter which routines and roles remain. A private
+anniversary can matter to one person while everyone else sees an ordinary day.
+A shared repair interest can connect two people without an emotional reveal.
 
-Church, park and children's-home scenes can include chores, music, meals,
-privacy, irritation and quiet company as well as sentiment. Changing/shower
-spaces carry privacy norms without voyeuristic mechanics. Pranks remain in the
-catalog as abstract mischief with practical costs; they are not technical
-instructions or necessarily a permanent character identity.
+The library includes quiet lessons and ordinary weeks. The next useful design
+question is not how to reward every action, but whether routines, conflicts
+and differing interpretations make sense when no author forces a plot.
 
-## A location offers opportunities; it does not command a scene
+## Authoring limits
 
-Seating, shelter, privacy, a public audience, transport and work surfaces are
-opportunities. Routines bring people into those opportunities at different
-times. Weather, scarce staff attention, a private duty or a missed connection
-can interrupt the routine. Conversation choices can offer help, decline,
-clarify, accuse, confide, set boundaries, mediate or simply remain silent.
+Possibility edges, symbolic dates and explanatory notes are not executable
+conditions. Some examples describe variants of an action, rather than a
+condition that currently gates it. The catalog needs editorial review as well
+as structural validation; valid IDs and compatible kinds do not prove the
+semantic truth of every association.
 
-An ordinary quiet lesson is represented. School need not be a forced algebra
-quiz or a constant crisis generator. Uneventful spans may later advance time
-without erasing attendance, fatigue, relationships or other people's schedules.
-
-## Still deliberately unresolved
-
-The first catalog is not a closed taxonomy or a commitment to a specific AI
-architecture. It does not set emotional decay rates, probabilities, social
-utility weights, procedural character distributions, exact timetable duration,
-life spans, memory limits, authored-dialogue wording, gameplay rewards or a
-week-long simulation. Qualifiers can document proposed conditions; they do not
-make those conditions executable.
-
-Prioritize a native editor check and author review of concrete chains before
-adding more node counts. The useful question is whether a reader can trace why
-someone could act, what they could actually know, whose interests conflict,
-and which outcomes remain genuinely optional.
+Before runtime use, separate enabling conditions, evidence supporting versus
+challenging a claim, alternative action variants, audiences and expiration.
+Do not flatten those into a universal social score. Neither the shortest-path
+tracer nor the holder lens is a causal model or an NPC knowledge-access system.
