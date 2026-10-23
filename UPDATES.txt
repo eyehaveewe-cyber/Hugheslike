@@ -1,6 +1,41 @@
 HUGHESLIKE — RECENT WORK
 Newest dated entries first. Dates below use UTC.
 
+2026-10-23 — Expanded relationships and GraphEdit navigation (verification pass)
+
+Implemented source on docs/repository-updates-2026-10-16:
+- Added fourteen connected character/world categories: interests, preferences,
+  habits, coping strategies, boundaries, bodily states, appraisals, expectations,
+  constraints, occasions, communication channels, recurring interaction
+  patterns, self-images and life transitions.
+- Added four fictional people and connected concert, delayed-message, shared
+  repair and unequal-credit examples. Opposing feelings can coexist; private
+  motives, practical limits, public judgments and observed events stay distinct.
+- Added relation/meaning/direction/holder filters, optional qualifier-reference
+  wires, a searchable relation library and a shortest-connection tracing dialog.
+  The holder lens is an authoring filter, not a player's knowledge boundary.
+- Added explicit, undoable missing-catalog merge that preserves existing labels,
+  records, custom metadata and layouts. Kept the original catalog unchanged.
+- Reworked the panel with explicit types to address the previous native parser
+  failure. Replaced the smoke test's native-class name collision and expanded
+  tests for model, storage, merge, queries and actual UI callbacks.
+- Added docs/ATLAS_V02.md and extended Python catalog/regression checks.
+
+Checks observed before this expansion:
+- Recovery run 39986226903: base data validation and all 21 Python tests PASS.
+- Godot 4.7.2 download and checksum PASS. Native import and smoke FAILED on
+  GDScript typing/name errors in the recovered draft; these failures informed
+  this patch. The expanded code must pass a fresh run before success is claimed.
+- Graphical/manual interaction, Windows saves and original-game integration
+  remain untested. No private art/source import, main merge or deployment.
+
+Source commit: 3f7dde06e3e5c6c3db1abd65ce8726ac52ec9137
+Branch: docs/repository-updates-2026-10-16
+Guide:
+https://github.com/eyehaveewe-cyber/Hugheslike/blob/docs/repository-updates-2026-10-16/docs/ATLAS_V02.md
+Observed recovery run:
+https://github.com/eyehaveewe-cyber/Hugheslike/actions/runs/39986226903
+
 2026-10-23 — Interrupted Hughes Atlas source recovered for verification
 
 Implemented on docs/repository-updates-2026-10-16:

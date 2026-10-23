@@ -17,9 +17,12 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
       - name: Data and regression checks
         run: |
           python3 tools/atlas_data.py
+          python3 tools/atlas_extended.py
           python3 -m unittest discover -s tests -p 'test_*.py' -v
       - name: Install exact Godot 4.7.2 test engine
         if: always()
