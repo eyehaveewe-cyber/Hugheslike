@@ -1,6 +1,33 @@
 HUGHESLIKE — RECENT WORK
 Newest dated entries first. Dates below use UTC.
 
+2026-10-23 — Interrupted Hughes Atlas source recovered for verification
+
+Implemented on docs/repository-updates-2026-10-16:
+- Recovered the GraphEdit development project, editor addon, authoring seed,
+  validators and supplied tests from the previous turn's uncommitted Git tree.
+- Added read-only CI for data checks, Python tests and Godot 4.7.2 native import
+  and model/UI callback checks. Engine download has a pinned checksum.
+- Replaced unsupported draft test claims with an explicit pending verification
+  record. The old game description remains in FOUNDATION_README_ARCHIVE.md.
+
+What can be tried: open project.godot and select Hughes Atlas or run F5; inspect
+School, Character layers and the bicycle-loan example. Native startup and all
+checks remain unverified at this recovery checkpoint; inspect the actual logs.
+
+Checked now: live branch head and availability of the previous draft tree.
+Not yet verified: new Python/native runs, graphical usability, Windows saves.
+Research: official GraphEdit/editor API and official Godot 4.7.2 release.
+No private art/source import, main merge, deployment or runtime NPC simulation.
+
+Source branch commit: 3fb13b65d185242d160cfc264bac130ca657adc2
+Recovered tree: b8b20853caf42959a948e0582d1b107e2874bad0
+Branch: docs/repository-updates-2026-10-16
+Update log:
+https://github.com/eyehaveewe-cyber/Hugheslike/blob/docs/repository-updates-2026-10-16/UPDATES.txt
+Checks:
+https://github.com/eyehaveewe-cyber/Hugheslike/actions
+
 2026-10-16 — Repository status and reporting added (documentation review)
 
 Implemented in this review branch:
