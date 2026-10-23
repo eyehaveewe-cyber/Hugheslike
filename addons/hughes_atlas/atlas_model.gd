@@ -2,6 +2,7 @@
 extends RefCounted
 ## Catalog boundary: reusable core + additive authored packs, never runtime AI.
 const Core = preload("atlas_core.gd")
+const Storage = preload("atlas_storage.gd")
 const DEFAULT_PATH := Core.DEFAULT_PATH
 const SEED_PATH := Core.SEED_PATH
 const VERSION := Core.VERSION
@@ -44,7 +45,9 @@ static func expand_seed(seed: Dictionary) -> Dictionary:
 
 static func validate(doc: Dictionary) -> Array[String]:
 	var errors: Array[String] = []
-	# Reject malformed references before Dictionary indexing in the reusable core.
+	var json_error: String = Storage.json_problem(doc)
+	if not json_error.is_empty():
+		return [json_error]
 	for section in ["kinds", "relations", "nodes", "edges", "views"]:
 		if not doc.get(section) is Array:
 			return Core.validate(doc)
@@ -90,7 +93,7 @@ static func save_atomic(doc: Dictionary, path: String, expected_hash: String) ->
 	var errors: Array[String] = validate(doc)
 	if not errors.is_empty():
 		return "Save refused: " + "\n".join(errors)
-	return Core.save_atomic(doc, path, expected_hash)
+	return Storage.save_json(doc, path, expected_hash)
 
 static func merge_missing(existing: Dictionary, incoming: Dictionary) -> Dictionary:
 	var errors: Array[String] = validate(existing)
@@ -108,9 +111,8 @@ static func merge_missing(existing: Dictionary, incoming: Dictionary) -> Diction
 				merged[section].append(record.duplicate(true))
 				known[record.id] = record
 				counts[section] += 1
-			elif known[record.id] != record:
+			elif not Storage.json_equal(known[record.id], record):
 				retained += 1
-	# The user's title, layouts, unknown metadata and existing records always win.
 	merged["catalog_revision"] = str(incoming.get("catalog_revision", "0.2"))
 	errors = validate(merged)
 	if not errors.is_empty():

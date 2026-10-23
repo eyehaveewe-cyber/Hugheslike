@@ -3,6 +3,7 @@ extends SceneTree
 const Model = preload("res://addons/hughes_atlas/atlas_model.gd")
 const AtlasPanel = preload("res://addons/hughes_atlas/atlas_panel.gd")
 const Queries = preload("res://addons/hughes_atlas/atlas_queries.gd")
+const Storage = preload("res://addons/hughes_atlas/atlas_storage.gd")
 var failures: Array[String] = []
 var checks: int = 0
 
@@ -52,9 +53,18 @@ func _run() -> void:
 		var again: Dictionary = Model.merge_missing(merged.data, doc)
 		check(again.data == merged.data, "Catalog merge is idempotent")
 	var file_path: String = "user://atlas_smoke_" + str(Time.get_ticks_usec()) + ".json"
+	# A deliberately precision-sensitive authored value catches truncating JSON writes.
+	doc.nodes[0]["precision_probe"] = 0.12345678901234567
 	check(Model.save_atomic(doc, file_path, "").is_empty(), "Initial guarded save")
 	var loaded: Dictionary = Model.read_json(file_path)
-	check(loaded.has("data") and loaded.data == doc, "JSON save/read roundtrip")
+	check(loaded.has("data") and Storage.json_equal(loaded.data, doc), "JSON save/read preserves all values (JSON number semantics)")
+	check(loaded.data.nodes[0].precision_probe == doc.nodes[0].precision_probe, "Exact float precision preserved")
+	check(loaded.data.schema_version == doc.schema_version, "Schema version value preserved")
+	check(not Storage.json_equal({"value": 0.55}, {"value": 0.55000001}), "Roundtrip comparator detects changed numbers")
+	check(not Storage.json_equal({"value": true}, {"value": 1}), "Booleans are not numbers")
+	check(not Storage.json_problem({"bad": INF}).is_empty(), "Reject infinity")
+	check(not Storage.json_problem({"bad": NAN}).is_empty(), "Reject NaN")
+	check(not Storage.json_problem({"bad": 9007199254740992}).is_empty(), "Reject non-exact integer range")
 	check(not Model.save_atomic(doc, file_path, "stale_hash").is_empty(), "Reject stale writer")
 	var hash: String = FileAccess.get_file_as_string(file_path).sha256_text()
 	check(Model.save_atomic(doc, file_path, hash).is_empty(), "Save with correct prior hash")

@@ -1,10 +1,10 @@
-; Standalone development atlas, NOT the separately held Hugheslike game.
+; Standalone authoring tool. The separate game and private art are not imported.
 config_version=5
 
 [application]
 config/name="Hughes Atlas — development library"
 run/main_scene="res://addons/hughes_atlas/atlas.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [display]
 window/size/viewport_width=1600
