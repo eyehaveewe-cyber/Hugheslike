@@ -1,44 +1,50 @@
 # Hughes Atlas progress — 2026-10-23
 
-## Completed and committed on the requested branch
+## Completed: grocery, bank and video-store authoring networks
 
-The interrupted source is recovered on `docs/repository-updates-2026-10-16`.
-The GraphEdit development tool now has 53 categories, 143 relation types,
-691 entries, 1,344 links, fourteen views and ten fictional example people.
-This is 14 categories, 47 predicates, 208 entries and 477 links beyond the
-recovered base; the original base records are unchanged.
+The requested branch `docs/repository-updates-2026-10-16` now has the v0.3
+commerce catalogue: 61 categories, 177 predicates, 1,072 entries, 2,358 links
+and 23 views. This pass adds 381 entries and 1,014 links across three stores,
+shared commerce concepts and twelve new biblical-named fictional people.
 
-New layers cover interests, preferences, habits, coping, boundaries, bodily
-states, appraisals, expectations, practical constraints, occasions, message
-channels, recurring interactions, self-images and life transitions. The new
-examples connect a missed concert, late explanation, shared repair interest,
-unequal public credit and private mixed feelings.
+Grocery work connects household lists, stock, prices, favors, delivery, public
+exposure and closing. Bank work separates account holder, request, authorization,
+custody, availability, records and private knowledge. Video-store work separates
+film/title, display case, physical copies, reservation, rental permission,
+actual return, processing entry, taste and public interpretation.
 
-The editor adds relation/meaning/holder/direction lenses, optional qualifier
-reference wires, a searchable relation library, connection tracing and an
-explicit additive catalog merge. Editing, local undo/redo, saved layout,
-full relationship inspection and guarded persistence are retained. Storage
-normalizes Godot's textual-key representation and preserves numeric precision.
+Ruth's wages-to-groceries example and Hannah's timely-return/late-record example
+connect the stores to individual beliefs, memories and obligations. A three-stop
+errand provides cross-store links without requiring drama at every stop.
+
+The existing GraphEdit controls remain: search, focus, relation/meaning/holder/
+direction lenses, metadata wires, relationship browser, connection tracing,
+JSON editing, local undo/redo, layout and guarded persistence. Missing-content
+merge now adds the commerce packs explicitly without overwriting authored work.
 
 ## Verified
 
-Run 39989391936 at code commit fb0911b4f4f406b055a67108a4705b7b10093204:
-base/expanded validators PASS; 40 Python tests PASS; Godot 4.7.2 native editor
-import PASS; 45 native model/storage/query/UI callback checks PASS.
-See QA_ATLAS.md for evidence and limits. Final reporting changes do not alter
-that tested code.
+Run 39994913207 at code commit d766bd629328e437a995c67f6a48afda0ccfbc77:
+all three catalogue validators PASS; 64 Python tests PASS; Godot 4.7.2 editor
+import PASS; 45 retained native checks and 33 commerce native checks PASS.
+Python and Godot expansion match value for value. See QA_COMMERCE.md.
 
-## Next bounded pass
+The earlier v0.2 work and evidence remain intact in ATLAS_V02.md and QA_ATLAS.md;
+all older source catalogue records are unchanged. The interrupted GraphEdit
+foundation was already recovered in that pass.
 
-A hands-on graphical authoring pass in School, Character and the new family
-examples, followed by a paper school-week review. Review candidate relation
-semantics and conditions instead of maximizing counts. A running resolver
-should consume explicitly executable rules, never all graph edges by default.
+## Next bounded authoring work
+
+Use the three store views and inspect the two example chains visually. Review
+ordinary days as well as disagreements; vary one constraint or information
+holder at a time. Identify the user's proposed program and its real export/API
+before building an adapter. The JSON pack boundary is documented in
+CATALOG_PACKS.md, but no adapter is claimed.
 
 ## Deliberately not implemented
 
-The original game bridge, a populated game town, runtime NPC scheduling,
-information propagation, emotional updates, memory decay, dialogue execution,
-procedural life generation, quests, XP and progression. No private game/art
-import, main merge or deployment. The atlas is an authoring foundation, not a
-claim that those systems already run.
+No playable store maps, inventory economy, account arithmetic, autonomous NPC
+scheduling, rumor execution, emotional changes, memory decay, dialogue engine,
+procedural life generation, quest/XP layer or original-game bridge. Headless
+checks do not establish visual usability or Windows persistence. No private
+art/source import, main merge or deployment.

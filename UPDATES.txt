@@ -1,6 +1,92 @@
 HUGHESLIKE — RECENT WORK
 Newest dated entries first. Dates below use UTC.
 
+2026-10-23 — Grocery, bank and video-store networks added; native checks pass
+
+Implemented on docs/repository-updates-2026-10-16:
+- Added connected grocery, bank and video-store authoring networks, plus shared
+  commerce definitions and worked examples. This is GraphEdit planning content,
+  not three newly playable store maps or an executing economic simulation.
+- Added 381 entries, 1,014 connections, eight categories, 34 relationship types
+  and nine views. The complete library now has 61 categories, 177 relationship
+  types, 1,072 entries, 2,358 connections and 23 views, with no unlinked entries.
+- Grocery: 92 entries covering staff, shoppers, household lists, substitutions,
+  shelf/till prices, delivery, parcels, favors, closing and twelve situations.
+- Bank: 83 entries separating account holder, permission, custody, request,
+  availability, records and private explanation, with twelve situations.
+- Video store: 103 entries separating film titles from physical tapes, display
+  cases, reservations, accounts, return events and processing records, with
+  thirteen situations. Taste, teasing, privacy and quiet browsing are included.
+- Shared commerce has 48 entries; worked examples have 55. Twelve new fictional
+  residents use biblical first names: Joseph, Ruth, Samuel, Naomi, Deborah,
+  Nathan, Esther, Ezra, Hannah, Caleb, Isaac and Lydia. Existing authored cast
+  labels and stable identifiers were not silently rewritten.
+- Added Ruth's wages-to-groceries chain, Hannah's timely-return/late-record
+  dispute, Samuel's entrusted business deposit and Naomi's reserved cake.
+  Possession is not ownership, permission is scoped, records can be wrong,
+  and a bystander's interpretation is not a world fact.
+- Added five data-only packs with a validated local manifest, portable expanded
+  JSON export and report. Existing missing-content merge adds them explicitly
+  while preserving prior edits and layouts. The old catalogue records remain
+  unchanged and independently testable.
+- Added store/network documentation and a data-pack contract for a future
+  authoring plugin. The user's other program is not yet identified or connected;
+  no adapter, compatibility claim or new service dependency is included.
+- Updated README, working guide, progress and QA. The previous working guide is
+  preserved byte-for-byte as docs/ATLAS_GUIDE_V02.md. Earlier log entries below
+  are retained.
+
+What can now be tried:
+- Open project.godot in Godot 4.7.2, choose Hughes Atlas or run F5. Select Grocery
+  store, Bank branch or Video store. Search Ruth or Hannah for connected cases.
+- Existing saved graphs: use Add missing seed content, review, then Save. The
+  editor does not automatically replace the user's saved catalogue.
+- Inspect two copies of one film, a return versus its processing time, a bank
+  account versus its holder, or an observer's guess versus a private record.
+  All use the existing typed links, search, filters, inspector and undo/redo.
+- Run tools/atlas_commerce.py to validate/report, or use --export NEW_FILE.json
+  to create a portable full graph without overwriting an existing file.
+
+Checks actually performed and observed:
+- Read the GitHub Actions job status, step conclusions and decoded logs.
+- Original, v0.2 and commerce catalogue validators PASS; zero unlinked entries.
+- 64 Python regression tests PASS, including 24 new commerce tests.
+- Godot 4.7.2 native editor import PASS.
+- 45 retained native model/storage/query/UI checks PASS against the v0.2 data.
+- 33 new native commerce checks PASS against the full v0.3 data: actual store
+  view-selection callbacks, GraphEdit nodes/wires, account and copy links,
+  shared itinerary traversal, full save/reload, edits/undo and safe merging.
+- Python and Godot expansion of the complete catalogue match value for value.
+  Official engine ZIP checksum verification also passed in the workflow.
+
+Source branch commit: a8eead3408b38ae1690c202d23d12d27578bba77
+Verified code/content commit: d766bd629328e437a995c67f6a48afda0ccfbc77
+Passing run:
+https://github.com/eyehaveewe-cyber/Hugheslike/actions/runs/39994913207
+Job:
+https://github.com/eyehaveewe-cyber/Hugheslike/actions/runs/39994913207/job/120555807387
+This completion commit changes documentation only after that tested code.
+
+Research-only and remaining limits:
+- Consulted official Godot JSON documentation for the existing data boundary.
+- Store policies, banking arrangements and financial records are fictional
+  authoring examples, not current legal/financial guidance or real accounts.
+- No visual screenshot, hands-on mouse/keyboard pass, Windows persistence test
+  or original-game integration. Headless checks do not prove visual readability.
+- No running inventory/account arithmetic, autonomous queues, NPC scheduling,
+  knowledge propagation, dialogue execution, playable store maps, XP or quests.
+- The external program adapter remains undefined until its actual format/API
+  is available; the data contract is implemented/documented, not the adapter.
+- No private art/source import or publication, merge to main or deployment.
+
+Branch: docs/repository-updates-2026-10-16
+Store networks:
+https://github.com/eyehaveewe-cyber/Hugheslike/blob/docs/repository-updates-2026-10-16/docs/COMMERCE_ATLAS.md
+Verification:
+https://github.com/eyehaveewe-cyber/Hugheslike/blob/docs/repository-updates-2026-10-16/docs/QA_COMMERCE.md
+Update log:
+https://github.com/eyehaveewe-cyber/Hugheslike/blob/docs/repository-updates-2026-10-16/UPDATES.txt
+
 2026-10-23 — Hughes Atlas recovery and expansion complete; native checks pass
 
 Implemented and committed on docs/repository-updates-2026-10-16:
