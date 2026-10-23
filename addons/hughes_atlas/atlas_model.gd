@@ -7,6 +7,7 @@ const DEFAULT_PATH := Core.DEFAULT_PATH
 const SEED_PATH := Core.SEED_PATH
 const VERSION := Core.VERSION
 const PACK_PATH := "res://addons/hughes_atlas/seed_extension.json"
+const COMMERCE_MANIFEST := "res://addons/hughes_atlas/packs/commerce_manifest.json"
 const REFERENCE_KEYS := ["holder", "context", "object", "feeling", "relationship_type", "claim"]
 
 static func read_json(path: String) -> Dictionary:
@@ -21,7 +22,7 @@ static func accepts(relation: Dictionary, source: Dictionary, target: Dictionary
 static func valid_id(value: Variant) -> bool:
 	return Core.valid_id(value)
 
-static func read_seed(include_extensions: bool = true) -> Dictionary:
+static func read_seed(include_extensions: bool = true, include_commerce: bool = true) -> Dictionary:
 	var result: Dictionary = Core.read_seed()
 	if result.has("error") or not include_extensions:
 		return result
@@ -35,12 +36,50 @@ static func read_seed(include_extensions: bool = true) -> Dictionary:
 			return {"error": "Extension " + section + " must be an array."}
 		seed[section].append_array(additions)
 	seed["catalog_revision"] = "0.2"
+	if include_commerce:
+		return append_commerce(seed)
+	return {"data": seed}
+
+static func append_commerce(original: Dictionary, manifest_path: String = COMMERCE_MANIFEST) -> Dictionary:
+	var manifest_result: Dictionary = read_json(manifest_path)
+	if manifest_result.has("error"):
+		return manifest_result
+	var manifest: Dictionary = manifest_result.data
+	if manifest.get("pack_format") != 1 or not manifest.get("files") is Array:
+		return {"error": "Commerce manifest requires pack_format=1 and a files array."}
+	var seed: Dictionary = original.duplicate(true)
+	var loaded: Dictionary = {}
+	var pack_ids: Dictionary = {}
+	var sources: Array[String] = []
+	for filename in manifest.files:
+		if not filename is String or filename.is_empty() or filename.get_file() != filename or filename.get_extension() != "json" or filename.begins_with("."):
+			return {"error": "Catalog pack filenames must be local JSON basenames."}
+		if loaded.has(filename):
+			return {"error": "Duplicate catalog pack filename: " + filename}
+		loaded[filename] = true
+		var part: Dictionary = read_json(manifest_path.get_base_dir().path_join(filename))
+		if part.has("error"):
+			return part
+		var pack_id: Variant = part.data.get("pack_id")
+		if not valid_id(pack_id) or pack_ids.has(pack_id):
+			return {"error": "Catalog packs require distinct stable pack_id values."}
+		pack_ids[pack_id] = true
+		for section in ["kinds", "relations", "groups", "links", "views"]:
+			var additions: Variant = part.data.get(section, [])
+			if not additions is Array or not seed.get(section) is Array:
+				return {"error": filename + ": " + section + " must be an array."}
+			seed[section].append_array(additions)
+		sources.append(pack_id)
+	seed["catalog_revision"] = str(manifest.get("catalog_revision", "0.3"))
+	seed["catalog_packs"] = sources
 	return {"data": seed}
 
 static func expand_seed(seed: Dictionary) -> Dictionary:
 	var doc: Dictionary = Core.expand_seed(seed)
 	if not doc.has("seed_errors"):
 		doc["catalog_revision"] = str(seed.get("catalog_revision", "0.1"))
+		if seed.has("catalog_packs"):
+			doc["catalog_packs"] = seed.catalog_packs.duplicate(true)
 	return doc
 
 static func validate(doc: Dictionary) -> Array[String]:
@@ -114,6 +153,8 @@ static func merge_missing(existing: Dictionary, incoming: Dictionary) -> Diction
 			elif not Storage.json_equal(known[record.id], record):
 				retained += 1
 	merged["catalog_revision"] = str(incoming.get("catalog_revision", "0.2"))
+	if incoming.has("catalog_packs"):
+		merged["catalog_packs"] = incoming.catalog_packs.duplicate(true)
 	errors = validate(merged)
 	if not errors.is_empty():
 		return {"error": "Catalog merge conflicts with authored schema: " + "\n".join(errors)}

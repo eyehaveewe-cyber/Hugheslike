@@ -1,5 +1,5 @@
 extends SceneTree
-## Native model, storage, graph-query and actual UI callback regression test.
+## Retained v0.2 model/UI regression; commerce integration has its own native test.
 const Model = preload("res://addons/hughes_atlas/atlas_model.gd")
 const AtlasPanel = preload("res://addons/hughes_atlas/atlas_panel.gd")
 const Queries = preload("res://addons/hughes_atlas/atlas_queries.gd")
@@ -17,7 +17,7 @@ func check(condition: bool, message: String) -> void:
 		push_error(message)
 
 func _run() -> void:
-	var result: Dictionary = Model.read_seed()
+	var result: Dictionary = Model.read_seed(true, false)
 	if result.has("error"):
 		push_error(str(result.error))
 		quit(1)
@@ -53,7 +53,6 @@ func _run() -> void:
 		var again: Dictionary = Model.merge_missing(merged.data, doc)
 		check(again.data == merged.data, "Catalog merge is idempotent")
 	var file_path: String = "user://atlas_smoke_" + str(Time.get_ticks_usec()) + ".json"
-	# A deliberately precision-sensitive authored value catches truncating JSON writes.
 	doc.nodes[0]["precision_probe"] = 0.12345678901234567
 	check(Model.save_atomic(doc, file_path, "").is_empty(), "Initial guarded save")
 	var loaded: Dictionary = Model.read_json(file_path)

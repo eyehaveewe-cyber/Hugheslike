@@ -1,0 +1,8 @@
+{
+  "pack_format": 1,
+  "catalog_revision": "0.3",
+  "title": "Everyday commerce: grocery, bank and video store",
+  "files": ["commerce_core.json", "grocery.json", "bank.json", "video_store.json", "commerce_examples.json"],
+  "policy": "Data-only authored concepts and fictional examples. No scripts, network access, bank connections, actual customer records or automatic NPC behavior.",
+  "naming": "New example people use biblical first names. Existing stable IDs and authored names are not silently rewritten."
+}

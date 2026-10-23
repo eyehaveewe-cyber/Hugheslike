@@ -1,0 +1,159 @@
+{
+ "pack_id": "commerce_core",
+ "kinds": [
+  {"id":"catalog_item","description":"A product or creative-work definition, separate from a particular physical copy or its availability."},
+  {"id":"inventory_state","description":"An authored physical item's availability or condition, independent of the shop's record."},
+  {"id":"account","description":"A fictional customer or financial account; distinct from the person, their cash and their reputation."},
+  {"id":"account_state","description":"A contextual account condition, not a character judgment or a live financial fact."},
+  {"id":"transaction","description":"A particular proposed or recorded exchange. Request, authorization, fulfillment and posting remain separate."},
+  {"id":"transaction_state","description":"A stage of an exchange, including unresolved, pending and corrected outcomes."},
+  {"id":"record","description":"A receipt, ledger entry or other account of an occurrence; may be incomplete, delayed or incorrect."},
+  {"id":"agreement","description":"An explicit set of obligations and permissions among parties, scoped to objects and time."}
+ ],
+ "relations": [
+  {"id":"commerce_offers","label":"offers item","source_kinds":["institution"],"target_kinds":["catalog_item"],"semantics":"structural","symmetric":false,"description":"Part of an advertised catalogue; not proof of an available copy."},
+  {"id":"commerce_copy_of","label":"is a physical copy of","source_kinds":["prop"],"target_kinds":["catalog_item"],"semantics":"structural","symmetric":false,"description":"Connects an actual item to its product or film definition; never transfers copy state to every item."},
+  {"id":"commerce_stocked_at","label":"is stocked at","source_kinds":["prop","catalog_item"],"target_kinds":["institution","place"],"semantics":"structural","symmetric":false,"description":"Supply location; stock, reservations and opening times remain separate."},
+  {"id":"commerce_inventory_state","label":"has inventory state","source_kinds":["prop"],"target_kinds":["inventory_state"],"semantics":"fact","symmetric":false,"description":"An authored physical state at a stated time; not whatever a ledger happens to claim."},
+  {"id":"commerce_reserves","label":"has a reservation for","source_kinds":["character"],"target_kinds":["prop","catalog_item"],"semantics":"fact","symmetric":false,"description":"A recorded claim to a future allocation; does not create stock or transfer ownership."},
+  {"id":"commerce_account_holder","label":"has account holder","source_kinds":["account"],"target_kinds":["character","group"],"semantics":"structural","symmetric":false,"description":"Holding an account does not imply every relative has authority over it."},
+  {"id":"commerce_administered_by","label":"is administered by","source_kinds":["account","agreement","record"],"target_kinds":["institution"],"semantics":"structural","symmetric":false,"description":"Administrative responsibility separate from who benefits from the service."},
+  {"id":"commerce_account_state","label":"has account condition","source_kinds":["account"],"target_kinds":["account_state"],"semantics":"fact","symmetric":false,"description":"A fixture or proposed condition; no real balances, eligibility decisions or external finance access."},
+  {"id":"commerce_authorized_on","label":"has scoped authority on","source_kinds":["character"],"target_kinds":["account"],"semantics":"normative","symmetric":false,"description":"Authority must identify purpose and limits in qualifiers; acquaintance, kinship and card possession do not imply it."},
+  {"id":"commerce_requests","label":"requests transaction","source_kinds":["character"],"target_kinds":["transaction"],"semantics":"fact","symmetric":false,"description":"A request is not an approved or completed transaction."},
+  {"id":"commerce_on_account","label":"concerns account","source_kinds":["transaction"],"target_kinds":["account"],"semantics":"structural","symmetric":false,"description":"The account implicated by an exchange; not a balance mutation."},
+  {"id":"commerce_involves","label":"involves item or resource","source_kinds":["transaction"],"target_kinds":["prop","catalog_item","resource"],"semantics":"structural","symmetric":false,"description":"What is exchanged or disputed; ownership, custody and payment remain distinct."},
+  {"id":"commerce_transaction_state","label":"has transaction stage","source_kinds":["transaction"],"target_kinds":["transaction_state"],"semantics":"fact","symmetric":false,"description":"Requested, pending, completed and disputed are different authored states."},
+  {"id":"commerce_documented_by","label":"is documented by","source_kinds":["transaction","agreement"],"target_kinds":["record"],"semantics":"structural","symmetric":false,"description":"A record can support or contradict an account of what happened; it is not infallible."},
+  {"id":"commerce_record_about","label":"purports to record","source_kinds":["record"],"target_kinds":["*"],"semantics":"structural","symmetric":false,"description":"Record content is an assertion about the target, not automatic world truth."},
+  {"id":"commerce_records_conflict","label":"conflicts with record","source_kinds":["record"],"target_kinds":["record"],"semantics":"structural","symmetric":true,"description":"Keep both accounts with provenance; a resolver must investigate rather than overwrite silently."},
+  {"id":"commerce_party_to","label":"is party to agreement","source_kinds":["character","institution"],"target_kinds":["agreement"],"semantics":"fact","symmetric":false,"description":"An actual participant in this authored agreement, not everyone nearby."},
+  {"id":"commerce_agreement_covers","label":"covers item or activity","source_kinds":["agreement"],"target_kinds":["prop","catalog_item","action"],"semantics":"structural","symmetric":false,"description":"The particular scope of an agreement."},
+  {"id":"commerce_agreement_requires","label":"requires fulfillment of","source_kinds":["agreement"],"target_kinds":["obligation","action"],"semantics":"normative","symmetric":false,"description":"An agreed duty; not every favor becomes a debt."},
+  {"id":"commerce_due_during","label":"is due during","source_kinds":["agreement","obligation"],"target_kinds":["time_window"],"semantics":"temporal","symmetric":false,"description":"A named deadline window. No calendar arithmetic or late-fee execution is implied."},
+  {"id":"commerce_account_norm","label":"is subject to account rule","source_kinds":["account"],"target_kinds":["norm"],"semantics":"normative","symmetric":false,"description":"Fictional local policy; not a claim about current banking or consumer law."},
+  {"id":"commerce_substitute","label":"may substitute for","source_kinds":["catalog_item"],"target_kinds":["catalog_item"],"semantics":"possibility","symmetric":false,"description":"A candidate alternative requiring consent, suitability and budget; never universal equivalence."},
+  {"id":"commerce_handles","label":"can handle service situation","source_kinds":["role"],"target_kinds":["situation"],"semantics":"possibility","symmetric":false,"description":"Responsibility and opportunity, not omniscient knowledge or automatic resolution."},
+  {"id":"commerce_record_seen","label":"has seen record","source_kinds":["character"],"target_kinds":["record"],"semantics":"subjective","symmetric":false,"description":"Specific knowledge holder. Seeing a record does not prove that it is correct or that the holder accepts it."},
+  {"id":"commerce_supports_claim","label":"offers evidence for claim","source_kinds":["record"],"target_kinds":["belief"],"semantics":"structural","symmetric":false,"description":"A piece of evidence, not an unconditional truth override."},
+  {"id":"commerce_review_of","label":"requests review of","source_kinds":["action","dialogue"],"target_kinds":["record","transaction","account"],"semantics":"possibility","symmetric":false,"description":"A review request can be accepted, postponed or refused within the scene's authored rules."},
+  {"id":"commerce_entered_during","label":"was entered during","source_kinds":["record"],"target_kinds":["time_window"],"semantics":"temporal","symmetric":false,"description":"Administrative entry time is separate from the underlying event's time."},
+  {"id":"commerce_entrusted_with","label":"is entrusted with","source_kinds":["character"],"target_kinds":["prop","record"],"semantics":"fact","symmetric":false,"description":"Custody and responsibility without necessarily having ownership or spending authority."},
+  {"id":"commerce_customer_of","label":"is a customer of","source_kinds":["character"],"target_kinds":["institution"],"semantics":"fact","symmetric":false,"description":"A service relationship, not personal closeness or a guaranteed transaction."},
+  {"id":"commerce_stock_prompts","label":"may prompt stock response","source_kinds":["inventory_state"],"target_kinds":["action","dialogue"],"semantics":"possibility","symmetric":false,"description":"An opportunity to restock, inspect, wait or negotiate; not executable AI."},
+  {"id":"commerce_state_prompts","label":"may prompt service response","source_kinds":["transaction_state","account_state"],"target_kinds":["action","dialogue"],"semantics":"possibility","symmetric":false,"description":"Different people may respond differently to the same administrative state."},
+  {"id":"commerce_topic_for","label":"can be a topic for","source_kinds":["catalog_item"],"target_kinds":["dialogue"],"semantics":"possibility","symmetric":false,"description":"A common interest, recommendation or disagreement without automatically revealing private taste."},
+  {"id":"commerce_service_at","label":"is handled at","source_kinds":["transaction","agreement"],"target_kinds":["place"],"semantics":"structural","symmetric":false,"description":"The service location; physical presence and private knowledge are still separate."},
+  {"id":"commerce_schedule_includes","label":"includes errand or stop","source_kinds":["routine"],"target_kinds":["place","action"],"semantics":"structural","symmetric":false,"description":"A proposed itinerary; actual arrival, queue length and deadlines are not simulated."}
+ ],
+ "groups": [
+  {"kind":"inventory_state","domain":"commerce","rows":[
+   ["on_shelf","On the shelf","Physically present; may still be reserved or unsuitable."],
+   ["reserved_copy","Reserved for a customer","Reservation is not possession or purchase."],
+   ["checked_out","Currently checked out","Custody has moved; ownership need not have changed."],
+   ["returned_unprocessed","Returned but not processed","The object is back even if a record still reports it missing."],
+   ["damaged_copy","Condition disputed or damaged","Cause, timing and responsibility need evidence."],
+   ["out_of_stock","No saleable copy available","A shelf label or catalogue listing is not stock."],
+   ["held_for_review","Held for review","Temporarily unavailable without declaring anyone guilty."]
+  ]},
+  {"kind":"transaction_state","domain":"commerce","rows":[
+   ["requested","Requested","An intention or application, not a completed exchange."],
+   ["pending","Pending","A delay is not proof of refusal or lack of means."],
+   ["completed","Completed in this fixture","Only the stated exchange is complete; other obligations can remain."],
+   ["disputed","Disputed","Participants disagree about an exchange or its record."],
+   ["corrected","Corrected with history retained","Correction need not reach every witness."],
+   ["declined","Declined in this fixture","A decision is separate from the person's worth or all future requests."]
+  ]},
+  {"kind":"account_state","domain":"commerce","rows":[
+   ["in_good_standing","In good standing for this service","Institutional standing, not goodness as a person."],
+   ["availability_pending","Requested funds not yet available","Authored fictional timing constraint; not a real bank's policy."],
+   ["review_required","Record review required","An administrative flag is not proof of misconduct."],
+   ["payment_due","A payment is recorded as due","The recorded claim can be disputed or corrected."]
+  ]},
+  {"kind":"action","domain":"commerce","rows":[
+   ["wait_in_queue","Wait in a queue","Waiting consumes time without implying compliance with every demand."],
+   ["request_private_service","Request a private conversation","Dignity can be protected without disclosing a reason to bystanders."],
+   ["compare_records","Compare two accounts of an exchange","Keep original records and ask what each one actually establishes."],
+   ["choose_alternative","Choose an acceptable alternative","Selection depends on purpose, consent and practical constraints."],
+   ["defer_errand","Defer an errand","A valid choice with consequences elsewhere in the day."],
+   ["offer_small_favor","Offer a small favor","The recipient can decline without being punished by the design."]
+  ]},
+  {"kind":"dialogue","domain":"commerce","rows":[
+   ["ask_discreetly","Ask discreetly","An attempt to limit the audience, not guaranteed secrecy."],
+   ["explain_policy","Explain a local policy","Explanation is separate from endorsing it or persuading the listener."],
+   ["challenge_policy","Challenge a local policy","Can be reasonable, self-serving or both."],
+   ["request_exception","Request an exception","An exception can have costs for others and is not guaranteed."],
+   ["offer_alternative","Offer an alternative","A proposal, not presumed acceptance."],
+   ["explain_delay","Explain a delay","A true explanation need not remove inconvenience or disappointment."],
+   ["decline_favor","Decline a favor","Maintains agency without a compulsory social penalty."]
+  ]},
+  {"kind":"norm","domain":"commerce","rows":[
+   ["queue_fairness","Queue fairness","Priority can be negotiated for a reason; favoritism and access needs differ."],
+   ["customer_privacy","Customer information stays private","Public presence is not permission to disclose records."],
+   ["record_correction","Preserve and correct disputed records","A record is evidence, not an infallible verdict."],
+   ["scoped_authority","Permission has a purpose and limit","Recognition, kinship and custody do not create blanket authority."]
+  ]},
+  {"kind":"goal","domain":"commerce","rows":[
+   ["finish_essentials","Finish essential errands","Priority belongs to the person rather than a global completion score."],
+   ["preserve_privacy","Keep a private difficulty private","No obligation to tell the player everything."],
+   ["keep_family_evening","Keep a promised family evening","Practical delays can have emotional significance."],
+   ["leave_work_on_time","Leave work on time","Workers have lives after the counter closes."],
+   ["serve_fairly","Serve fairly under pressure","Procedure, attention and compassion can conflict."]
+  ]},
+  {"kind":"time_window","domain":"commerce","rows":[
+   ["bank_closing","Bank closing window","Fictional local closing time; not a current real-world schedule."],
+   ["grocery_closing","Grocery closing window","Shopping competes with staff closing duties."],
+   ["video_return_due","Video return deadline","Authored agreement window independent of processing time."],
+   ["return_processing","Next return-processing interval","May occur after physical return."],
+   ["family_supper","Promised supper window","A household expectation, not a universal curfew."]
+  ]},
+  {"kind":"routine","domain":"commerce","rows":[
+   ["three_stop_errand","A three-stop errand","Bank, groceries and a video return overlap without requiring a crisis at every stop."]
+  ]},
+  {"kind":"situation","domain":"commerce","rows":[
+   ["errand_chain","Three errands and one afternoon","A queue or missing document changes opportunities elsewhere; no scripted catastrophe is required."],
+   ["private_explanation","A reason exists but is not public","Knowing why someone is delayed does not oblige them to tell every witness."],
+   ["ordinary_transactions","An ordinary uneventful round","The day can end with groceries bought, records settled and a film returned, with no quest reward."]
+  ]}
+ ],
+ "links":[
+  ["norm.queue_fairness","permits","action.wait_in_queue dialogue.ask_context"],
+  ["norm.customer_privacy","permits","action.request_private_service dialogue.ask_discreetly dialogue.decline_favor"],
+  ["norm.record_correction","permits","action.compare_records dialogue.admit_uncertainty"],
+  ["norm.scoped_authority","permits","dialogue.ask_permission"],
+  ["goal.finish_essentials","motivates","action.choose_alternative action.defer_errand"],
+  ["goal.preserve_privacy","motivates","action.request_private_service dialogue.ask_discreetly"],
+  ["goal.keep_family_evening","conflicts_with","goal.leave_work_on_time"],
+  ["goal.serve_fairly","motivates","action.compare_records dialogue.explain_policy"],
+  ["dialogue.challenge_policy dialogue.request_exception","can_lead_to","consequence.shared_understanding consequence.unresolved"],
+  ["dialogue.offer_alternative","can_lead_to","consequence.new_invitation consequence.unresolved"],
+  ["dialogue.explain_delay","can_evoke","emotion.relief feeling.ambivalence"],
+  ["inventory_state.out_of_stock inventory_state.reserved_copy","commerce_stock_prompts","action.choose_alternative dialogue.offer_alternative"],
+  ["inventory_state.damaged_copy inventory_state.held_for_review","commerce_stock_prompts","action.compare_records dialogue.ask_context"],
+  ["inventory_state.returned_unprocessed","commerce_stock_prompts","action.compare_records"],
+  ["inventory_state.on_shelf","commerce_stock_prompts","dialogue.ask_permission"],
+  ["inventory_state.checked_out","commerce_stock_prompts","action.defer_errand"],
+  ["transaction_state.pending account_state.availability_pending","commerce_state_prompts","dialogue.explain_delay action.defer_errand"],
+  ["transaction_state.disputed account_state.review_required account_state.payment_due","commerce_state_prompts","action.compare_records dialogue.ask_context"],
+  ["transaction_state.requested","commerce_state_prompts","dialogue.ask_permission"],
+  ["transaction_state.completed transaction_state.corrected account_state.in_good_standing","commerce_state_prompts","action.leave_scene"],
+  ["transaction_state.declined","commerce_state_prompts","dialogue.request_exception action.choose_alternative"],
+  ["situation.errand_chain","respond_with","action.defer_errand action.make_call action.choose_alternative"],
+  ["situation.private_explanation","respond_with","dialogue.ask_discreetly dialogue.keep_silent"],
+  ["situation.ordinary_transactions","respond_with","action.leave_scene dialogue.thank"],
+  ["action.offer_small_favor","can_lead_to","situation.unwanted_help"],
+  ["situation.errand_chain","associated_with","story_theme.travel_connection story_theme.class_pressure"],
+  ["situation.ordinary_transactions","associated_with","story_theme.quiet_days"],
+  ["routine.three_stop_errand","includes","action.wait_in_queue action.buy_groceries"],
+  ["routine.three_stop_errand","scheduled_during","time_window.after_school"],
+  ["routine.three_stop_errand","commerce_schedule_includes","place.bank place.grocery place.video_store"],
+  ["situation.errand_chain","happens_at","place.street"],
+  ["situation.private_explanation","associated_with","story_theme.dignity"],
+  ["time_window.bank_closing","precedes","time_window.family_supper"],
+  ["time_window.video_return_due","precedes","time_window.return_processing"],
+  ["time_window.family_supper","precedes","time_window.grocery_closing"]
+ ],
+ "views":[
+  {"id":"commerce_day","label":"Across all three stores","domains":["commerce","commerce_examples"],"focus":"routine.three_stop_errand"}
+ ]
+}

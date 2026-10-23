@@ -23,6 +23,7 @@ jobs:
         run: |
           python3 tools/atlas_data.py
           python3 tools/atlas_extended.py
+          python3 tools/atlas_commerce.py --export "$RUNNER_TEMP/atlas-commerce-expected.json" --report "$RUNNER_TEMP/atlas-commerce-report.json"
           python3 -m unittest discover -s tests -p 'test_*.py' -v
       - name: Install exact Godot 4.7.2 test engine
         if: always()
@@ -53,3 +54,13 @@ jobs:
           timeout 90 godot --headless --path . --script tests/atlas_smoke.gd 2>&1 | tee /tmp/atlas-smoke.log
           grep -F 'Hughes Atlas native smoke: PASS' /tmp/atlas-smoke.log
           if grep -E 'SCRIPT ERROR:|Parse Error:|Compile Error:|ERROR:' /tmp/atlas-smoke.log; then exit 1; fi
+      - name: Native commerce and cross-language integration
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          export ATLAS_EXPECTED_JSON="$RUNNER_TEMP/atlas-commerce-expected.json"
+          test -f "$ATLAS_EXPECTED_JSON"
+          timeout 90 godot --headless --path . --script tests/atlas_commerce_smoke.gd 2>&1 | tee /tmp/atlas-commerce.log
+          grep -F 'Hughes Atlas commerce smoke: PASS' /tmp/atlas-commerce.log
+          if grep -E 'SCRIPT ERROR:|Parse Error:|Compile Error:|ERROR:' /tmp/atlas-commerce.log; then exit 1; fi
