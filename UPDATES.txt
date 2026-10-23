@@ -1,6 +1,41 @@
 HUGHESLIKE — RECENT WORK
 Newest dated entries first. Dates below use UTC.
 
+2026-10-23 — Playable store slice added beside Hughes Atlas
+
+Implemented on integration/store-slice-and-atlas:
+- Made the newly written Bellwether department-store scene the F5 launch scene
+  in the existing editable Godot project. Walk, click a destination or fixture,
+  deliver a return, buy a scarf, inspect the notebook and leave by the doors.
+- Kept Hughes Atlas 0.3 and its existing authoring records in the same project.
+  Open its editor tab, or select addons/hughes_atlas/atlas.tscn and press F6.
+- Captured two screenshots from the running Godot 4.7.2 game. The store and
+  character pictures are temporary 2D drawings made in code.
+
+What can now be tried:
+- Download this branch, import project.godot in Godot 4.7.2, and press F5 for
+  the store. The controls and small slice scope are in docs/STORE_SLICE.md.
+- Open the Hughes Atlas tab for its existing grocery, bank and video-store
+  planning networks. The Atlas data does not yet control the game scene.
+
+Checks actually performed on this integration branch:
+- Godot 4.7.2 editor import and store smoke checks PASS.
+- Atlas native model/storage/query/UI smoke checks PASS (45 checks); commerce
+  native smoke checks PASS (32 checks); 64 Python tests PASS.
+- The game rendered in Godot 4.7.2 under a software OpenGL display; two
+  1440x900 engine viewport screenshots were saved in docs/screenshots.
+
+Limits and status:
+- The user's historical foundation ZIP and its private art were not accessible
+  to this workspace and were not imported, repaired or represented as runnable.
+  This is new source, not recovered source. No 3D models were introduced.
+- Only one department-store scene is playable. There is no Atlas-to-game
+  runtime adapter, full social simulation, main merge or deployment.
+- This work remains on a separate branch; main was not merged or deployed.
+
+Source branch commits: Atlas 9fbfd4920db575bf80983716eecd30b06e50d9e3;
+store slice 7807f0c547ba22cc4c368699e4e583a6183fd183.
+
 2026-10-23 — Grocery, bank and video-store networks added; native checks pass
 
 Implemented on docs/repository-updates-2026-10-16:

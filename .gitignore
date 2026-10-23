@@ -1,6 +1,7 @@
 .godot/
 *.tmp
 *.bak
+docs/screenshots/*.import
 __pycache__/
 .pytest_cache/
 # Local authoring files are intentionally trackable; review before publishing.

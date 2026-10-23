@@ -1,11 +1,23 @@
-# Hugheslike — Hughes Atlas 0.3: everyday commerce
+# Hugheslike — playable store slice + Hughes Atlas 0.3
 
 **[Recent work, checks and limitations: UPDATES.txt](UPDATES.txt)**
 
-A Godot GraphEdit development library for interconnected people, places,
-routines, memories, beliefs and possible situations. This update adds linked
-**grocery-store, bank and video-store networks**. It does not import the separate
-playable game, private art or any real financial/customer data.
+This integration branch combines the new playable Bellwether store scene with
+the existing Hughes Atlas GraphEdit development library. Open `project.godot`
+in **Godot 4.7.2** and press **F5** to play the store slice. The **Hughes Atlas**
+tab remains available in the editor; select `addons/hughes_atlas/atlas.tscn`
+and press **F6** to run it as a standalone tool.
+
+The store scene is new source from `implementation/store-slice-v0.1`. Its room
+and people use marked temporary 2D drawings. The historical foundation ZIP and
+private sprites were not imported, and Atlas entries do not drive the game at
+runtime. [Store controls and limits](docs/STORE_SLICE.md) ·
+[real engine store screenshot](docs/screenshots/store-in-engine.png) ·
+[returns and notebook screenshot](docs/screenshots/returns-and-notebook-in-engine.png)
+
+Hughes Atlas records interconnected people, places, routines, memories, beliefs
+and possible situations. Its existing **grocery-store, bank and video-store
+networks** are preserved here. They contain no real financial/customer data.
 
 ## New connected content
 
@@ -32,12 +44,12 @@ outsider's unsupported guess. Hannah's example separates a timely physical
 tape return from a later processing entry and a disputed fee. A three-stop
 errand connects all three businesses without forcing every visit into a crisis.
 
-## Open it
+## Use Hughes Atlas
 
-Use **Godot 4.7.2**, open `project.godot`, and select **Hughes Atlas** at the top
-of the editor. F5 opens the same atlas as a standalone tool. Select Grocery
+In the Godot editor, select **Hughes Atlas** at the top. To open the standalone
+Atlas, select `addons/hughes_atlas/atlas.tscn` and press F6. Select Grocery
 store, Bank branch or Video store in the view menu; search Ruth or Hannah for
-cross-store examples. The plugin is enabled under Project Settings → Plugins.
+cross-store examples. The plugin remains enabled under Project Settings → Plugins.
 
 For an existing saved graph, choose **Add missing seed content…**, then Save.
 Existing record IDs, edited names, metadata and layouts win. Nothing is silently
@@ -48,11 +60,11 @@ relationship filters, reference wires, connection editor and undo/redo.
 [Store networks and example chains](docs/COMMERCE_ATLAS.md) ·
 [Data-pack boundary for a future plugin](docs/CATALOG_PACKS.md)
 
-The user's other program has not been integrated. The new networks are plain
-JSON packs with a validated manifest and expanded-document export, so a future
-adapter need not generate or manipulate Godot scenes.
+The game and Atlas now share this editable Godot project. The networks remain
+plain JSON packs with a validated manifest and expanded-document export. No
+adapter maps those records to game actions or NPC knowledge yet.
 
-## Observed checks
+## Atlas baseline checks
 
 [Passing run](https://github.com/eyehaveewe-cyber/Hugheslike/actions/runs/39994913207)
 at code commit `d766bd629328e437a995c67f6a48afda0ccfbc77`:
@@ -84,15 +96,16 @@ Export a new portable document without overwriting an existing file:
 python tools/atlas_commerce.py --export NEW_FILE.json
 ```
 
-This is authored planning data and editor infrastructure, not 1,072 executable
-behaviors. No running inventory economy, bank arithmetic, autonomous queues,
-NPC scheduling, information spread, emotional simulation, playable store maps,
-quests or XP were added. Visual readability, manual mouse use, Windows
-persistence and original-game integration remain unverified. No main merge,
-deployment or private asset publication was performed.
+These 1,072 Atlas entries remain authored planning data, not executable
+behaviors. The new game has one playable department-store map; there are no
+playable grocery, bank or video-store maps, running inventory economy, bank
+arithmetic, autonomous queues, NPC scheduling, information spread, emotional
+simulation, quests or XP. Windows persistence and a hands-on play session
+remain unverified. No main merge, deployment or private asset publication was
+performed.
 
 The older game description remains in
-[FOUNDATION_README_ARCHIVE.md](docs/FOUNDATION_README_ARCHIVE.md); its gameplay
-claims do not describe this authoring-only checkout. The v0.2 tests and design
+[FOUNDATION_README_ARCHIVE.md](docs/FOUNDATION_README_ARCHIVE.md); its larger
+gameplay claims do not describe this small slice. The v0.2 tests and design
 record remain in [QA_ATLAS.md](docs/QA_ATLAS.md) and
 [ATLAS_V02.md](docs/ATLAS_V02.md).

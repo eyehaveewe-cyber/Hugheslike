@@ -1,5 +1,10 @@
 # Hughes Atlas progress — 2026-10-23
 
+This records the Atlas v0.3 authoring pass before the separate store-slice
+integration. The integration branch now contains one playable department-store
+scene; the Atlas networks below remain planning data and are not connected to
+gameplay. See [STORE_SLICE.md](STORE_SLICE.md) and the root `UPDATES.txt`.
+
 ## Completed: grocery, bank and video-store authoring networks
 
 The requested branch `docs/repository-updates-2026-10-16` now has the v0.3
