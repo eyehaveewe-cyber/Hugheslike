@@ -1,15 +1,14 @@
 @tool
 extends RefCounted
-## Guarded JSON persistence. Preserve floating-point values and reject non-JSON data.
+## Guarded JSON persistence, including Godot's StringName dictionary shorthand.
 
 static func json_problem(value: Variant, location: String = "$", depth: int = 0) -> String:
 	if depth > 64:
 		return location + ": nesting exceeds 64 levels."
 	match typeof(value):
-		TYPE_NIL, TYPE_BOOL, TYPE_STRING:
+		TYPE_NIL, TYPE_BOOL, TYPE_STRING, TYPE_STRING_NAME:
 			return ""
 		TYPE_INT:
-			# Godot's JSON reader stores numbers as doubles. Stay inside exact integer range.
 			return "" if value >= -9007199254740991 and value <= 9007199254740991 else location + ": integer exceeds exact JSON reader range."
 		TYPE_FLOAT:
 			return "" if is_finite(value) else location + ": non-finite numbers cannot be saved as JSON."
@@ -19,15 +18,37 @@ static func json_problem(value: Variant, location: String = "$", depth: int = 0)
 				if not error.is_empty():
 					return error
 		TYPE_DICTIONARY:
+			var names: Dictionary = {}
 			for key in value:
-				if not key is String:
-					return location + ": JSON object keys must be strings."
-				var error: String = json_problem(value[key], location + "." + key, depth + 1)
+				if not (key is String or key is StringName):
+					return location + ": JSON object keys must be text."
+				var name: String = str(key)
+				if names.has(name):
+					return location + ": duplicate normalized JSON key " + name
+				names[name] = true
+				var error: String = json_problem(value[key], location + "." + name, depth + 1)
 				if not error.is_empty():
 					return error
 		_:
 			return location + ": unsupported JSON value type " + type_string(typeof(value))
 	return ""
+
+static func json_value(value: Variant) -> Variant:
+	# Dictionary.member assignments may create StringName keys. Normalize to the
+	# JSON domain before writing, without rounding numbers or dropping fields.
+	if value is StringName:
+		return str(value)
+	if value is Dictionary:
+		var object: Dictionary = {}
+		for key in value:
+			object[str(key)] = json_value(value[key])
+		return object
+	if value is Array:
+		var array: Array = []
+		for item in value:
+			array.append(json_value(item))
+		return array
+	return value
 
 static func save_json(doc: Dictionary, path: String, expected_hash: String) -> String:
 	var problem: String = json_problem(doc)
@@ -39,8 +60,7 @@ static func save_json(doc: Dictionary, path: String, expected_hash: String) -> S
 	var directory: String = ProjectSettings.globalize_path(path.get_base_dir())
 	if DirAccess.make_dir_recursive_absolute(directory) != OK:
 		return "Cannot create data directory: " + directory
-	# Full precision is required for exact float decoding; JSON still has only one number type.
-	var text: String = JSON.stringify(doc, "\t", true, true) + "\n"
+	var text: String = JSON.stringify(json_value(doc), "\t", true, true) + "\n"
 	var temporary: String = path + ".tmp"
 	var file: FileAccess = FileAccess.open(temporary, FileAccess.WRITE)
 	if file == null:
@@ -68,19 +88,22 @@ static func save_json(doc: Dictionary, path: String, expected_hash: String) -> S
 	return ""
 
 static func json_equal(left: Variant, right: Variant) -> bool:
-	# JSON numbers do not retain a Variant's int-vs-float distinction. Do not use
-	# approximate comparisons: a changed numeric VALUE must still fail a roundtrip.
 	var left_numeric: bool = left is int or left is float
 	var right_numeric: bool = right is int or right is float
 	if left_numeric and right_numeric:
 		return float(left) == float(right)
+	if (left is String or left is StringName) and (right is String or right is StringName):
+		return str(left) == str(right)
 	if typeof(left) != typeof(right):
 		return false
 	if left is Dictionary:
 		if left.size() != right.size():
 			return false
+		var right_text_keys: Dictionary = {}
+		for key in right:
+			right_text_keys[str(key)] = right[key]
 		for key in left:
-			if not right.has(key) or not json_equal(left[key], right[key]):
+			if not right_text_keys.has(str(key)) or not json_equal(left[key], right_text_keys[str(key)]):
 				return false
 		return true
 	if left is Array:
